@@ -1,3 +1,5 @@
+import 'dart:math' as Math;
+
 void printInteger(int number) {
   print('The number is $number.');
 }
@@ -143,7 +145,7 @@ void main() {
 
   bool b = true;
 
-  var c = MyClass();
+  var c = MyClass(4, 5);
   c.num1 = 4;
   c.num2 = 5;
 
@@ -151,11 +153,14 @@ void main() {
   print(c.toString());
 
   // cascade operator
-  var c1 = MyClass()
+  var c1 = MyClass(6, 7)
     ..num1 = 5
     ..num2 = 6;
 
   var c3 = MyClass1(12, 10);
+  // private methods and constructors break!
+  // c3.privateMethod(); breaks!!
+  // var breaks = MyClass1(2);
   print(c3.num2); // uses the getter method!!
   c3.num2 = 22; // uses the setter method
   print(c3.num2); // uses the getter method!!
@@ -168,24 +173,112 @@ void main() {
   var a2 = MyClass1(12, 12);
   print("sum -> ${a1 + a2}");
   print(a1.customMethod(a2));
-}
+  print(MyClass1.subtract(a1, a2));
+  print(MyClass1.counter);
+  print(MyExtendedClass(4, 5, 6));
+
+  print(Math.pi); // from the imported math library
+  Math.Random random = Math.Random();
+  num rand = random.nextInt(4);
+  //print(rand);
+  switch (rand) {
+    case 0:
+      print('zero');
+      break;
+    case 1:
+      print('one');
+      break;
+    case 2:
+      print('two');
+      break;
+    default:
+      print('what what');
+  }
+
+  A cla = C();
+  cla.hi();
+  // casting
+  (cla as C).hello();
+  (cla as C).printTimeStamp();
+
+  // anonynous function
+  () {
+    print('anon');
+  }();
+
+  () => print('anon2'); // this does nothing and throws no error
+
+  // COLLECTIONS
+
+  List<int> intL = [1, 2, 3, 4, 5, 6, 7];
+  print(intL[0]);
+  for (int i in intL) {
+    //print(i);
+  }
+
+  intL.forEach((element) {
+    //print(element);
+  });
+
+  //intL.forEach((i) => print(i));
+  var even = (i) => i.isEven;
+  print(intL.first); // first element
+  print(intL.last); // last element
+  print("skip -> ${intL.skip(3)}");
+  print(
+      "where -> ${intL.where((i) => even(i))}"); // like filter in other functional langs
+  print("map -> ${intL.take(10).map((i) => i * 2)}");
+  print("take While -> ${intL.takeWhile((i) => i < 4)}");
+  print("take -> ${intL.take(2)}");
+  print("any -> ${intL.any((i) => i % 2 == 0)}");
+  print("every -> ${intL.every((i) => i % 2 == 0)}");
+  print(
+      "reduce -> ${intL.reduce((prev, i) => prev + i)}"); // add them all together
+  print(intL.reduce(Math.min)); // ignores order
+  print(intL.reduce(Math.max)); // ignores order
+
+  Map<int, int> ma = Map.fromIterable(intL.take(10));
+  print(ma);
+  print(ma.map((int k, int v) => MapEntry(k, k + v)));
+} // end main
 
 // CLASSES
 
 class MyClass {
-  num num1;
-  num num2;
+  num num1, num2;
+
+  MyClass(num num1, num num2) {
+    this.num1 = num1;
+    this.num2 = num2;
+  }
+}
+
+// you can only inherit from one class but you can use implement
+class MyExtendedClass extends MyClass {
+  num num3;
+
+  MyExtendedClass(num num1, num num2, this.num3) : super(num1, num2);
 }
 
 class MyClass1 {
-  num _num1;
-  num _num2;
+  num _num1; // private field
+  num _num2; // private field
+  static num counter = 0;
 
   num getNum1() {
     return _num1;
   }
 
   void setNum1(num num1) {
+    this._num1 = num1;
+  }
+
+  void _privateMethod() {
+    // a private method
+  }
+
+  // private constructor
+  MyClass1._(num num1) {
     this._num1 = num1;
   }
 
@@ -200,9 +293,14 @@ class MyClass1 {
     return MyClass1(this._num1 * c.getNum1(), this._num2 * c.num2);
   }
 
+  static MyClass1 subtract(MyClass1 c, MyClass1 c1) {
+    return MyClass1(c.getNum1() - c1.getNum1(), c.num2 - c1.num2);
+  }
+
   MyClass1(num num1, num num2) {
     this._num1 = num1;
     this._num2 = num2;
+    counter = counter + 1;
   }
 
   @override
@@ -222,5 +320,49 @@ class MyClass2 {
   @override
   String toString() {
     return "$_num1 + $_num2";
+  }
+}
+
+// cannot instatiate abstract classes but you can use them as a type
+abstract class House {
+  String get name;
+}
+
+class MyHouse extends House {
+  @override
+  // TODO: implement name
+  String get name => throw UnimplementedError();
+}
+
+class A {
+  void hi() {
+    print('hi');
+  }
+}
+
+class B {
+  void hello() {
+    print('hello');
+  }
+}
+
+// Mixins uses the WITH keyword
+// must implement entire interface of A and B
+class C with TimeStamp implements A, B {
+  @override
+  void hello() {
+    // TODO: implement hello
+  }
+
+  @override
+  void hi() {
+    // TODO: implement hi
+  }
+}
+
+class TimeStamp {
+  DateTime now = DateTime.now();
+  void printTimeStamp() {
+    print(now);
   }
 }
