@@ -1,9 +1,10 @@
 import 'dart:async';
 
+// main method needs to be async
 void main() async {
   print('start');
   future().then((value) => print(value));
-  print("fut -> ${future()}");
+  print("future -> ${future()}");
   print(await future());
   print('end');
 }

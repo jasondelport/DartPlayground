@@ -7,7 +7,7 @@ void main() {
   ReceivePort receivePort = ReceivePort();
   receivePort.listen((data) {
     print(data);
-    if (data == "ended") {
+    if (data.contains("ended")) {
       receivePort.close();
     }
   });
