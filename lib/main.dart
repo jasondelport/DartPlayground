@@ -1,4 +1,5 @@
 import 'dart:math' as Math;
+import 'dart:io';
 
 void printInteger(int number) {
   print('The number is $number.');
@@ -240,14 +241,46 @@ void main() {
   Map<int, int> ma = Map.fromIterable(intL.take(10));
   print(ma);
   print(ma.map((int k, int v) => MapEntry(k, k + v)));
+
+  // EXCEPTION HANDLING
+
+  try {
+    print('hi');
+  } on FormatException {
+    print('error');
+  } on RangeError {
+    print('error');
+  } catch (e) {
+    print(e);
+  } finally {
+    print('finally');
+    throw NullThrownError();
+  }
+  /*
+
+
+  block comment
+
+
+  */
 } // end main
 
-// CLASSES
+// ENUMS
+enum Status {
+  stopped,
+  running,
+  paused,
+} // indexed starting at 0
 
+// CLASSES
 class MyClass {
   num num1, num2;
 
-  MyClass(num num1, num num2) {
+  MyClass(
+    num num1,
+    num num2,
+  ) {
+    // extra comma doesn't matter
     this.num1 = num1;
     this.num2 = num2;
   }
