@@ -3,10 +3,17 @@
 
 pub get    
 
-dart lib/main.dart    
+dart bin/main.dart    
 
-dart --enable-asserts lib/main.dart    
+dart --enable-asserts bin/main.dart    
+
+dart --enable-asserts --observe bin/main.dart      
 
 https://www.youtube.com/watch?v=8AO-2sjUUDM&list=PLJbE2Yu2zumDjfrfu8kisK9lQVcpMDDzZ&index=1
 
 https://dart.dev/guides/language/language-tour            
+
+https://pub.dartlang.org                  
+
+investigate closures     
+look at testing framework
