@@ -15,5 +15,7 @@ https://dart.dev/guides/language/language-tour
 
 https://pub.dartlang.org                  
 
-investigate closures     
+https://dart.dev/guides/language/effective-dart/style       
+
+  
 look at testing framework
