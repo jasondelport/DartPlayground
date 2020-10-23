@@ -166,6 +166,7 @@ void main() {
   c3.num2 = 22; // uses the setter method
   print(c3.num2); // uses the getter method!!
 
+  var c5 = MyClass2(4,5, name : "Jason");
   var c2 = MyClass2.num1(10);
   print(c2);
   print(c2.toString());
@@ -342,12 +343,17 @@ class MyClass1 {
   }
 }
 
+
+// factory patterns are good for crearting singletons
 class MyClass2 {
+  final String name;
   num _num1;
   num _num2;
 
-  MyClass2(this._num1, this._num2);
+  // the brackets implie that the third parameter is optional and is a named parameter
+  MyClass2(this._num1, this._num2, {this.name});
 
+  // named constructor
   MyClass2.num1(num val) : this(val, 0);
 
   @override
