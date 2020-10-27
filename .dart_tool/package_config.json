@@ -2,12 +2,30 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "intl",
+      "rootUri": "file:///Users/jasondelport/.pub-cache/hosted/pub.dartlang.org/intl-0.16.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.5"
+    },
+    {
+      "name": "logging",
+      "rootUri": "file:///Users/jasondelport/.pub-cache/hosted/pub.dartlang.org/logging-0.11.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "path",
+      "rootUri": "file:///Users/jasondelport/.pub-cache/hosted/pub.dartlang.org/path-1.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "dart_playground",
       "rootUri": "../",
       "packageUri": "lib/"
     }
   ],
-  "generated": "2020-10-19T08:48:24.984923Z",
+  "generated": "2020-10-27T08:58:56.398952Z",
   "generator": "pub",
   "generatorVersion": "2.10.2"
 }

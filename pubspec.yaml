@@ -1,1 +1,5 @@
 name: dart_playground
+
+dependencies:
+  logging: ^0.11.4
+  intl: ^0.16.1
