@@ -1,5 +1,4 @@
 import 'dart:math' as Math;
-import 'dart:io';
 
 void printInteger(int number) {
   print('The number is $number.');
@@ -14,6 +13,15 @@ void main() {
   // basic method
   printInteger(number);
 
+  // double question marks are equivalent to 'if null'
+  var bb;
+  String aa = bb ?? 'hello!!!';
+  print(aa);
+  
+  // if b is null then set it equal to hello, otherwise, don't change it
+  bb ??= 'hello!!!';
+  print(bb);
+  
   // dynamically typed
   var name0 = 'Bob';
   dynamic name1 = 'Bob';
@@ -46,16 +54,25 @@ void main() {
   // baz = [1, 2, 3];
 
   var foo = const [];
-  foo = [1, 2, 3]; // this is legal
+  foo = [
+    1,
+    2,
+    3
+  ]; // this is legal
 
   // Valid compile-time constants as of Dart 2.5.
   const Object i = 3; // Where i is a const Object with an int value...
-  const list = [i as int]; // Use a typecast.
-  const map = {if (i is int) i: "int"}; // Use is and collection if.
-  const set = {if (list is List<int>) ...list}; // ...and a spread.
+  const list = [
+    i as int
+  ]; // Use a typecast.
+  const map = {
+    if (i is int) i: "int"
+  }; // Use is and collection if.
+  const set = {
+    if (list is List<int>) ...list
+  }; // ...and a spread.
 
-  double z =
-      1; // automatically converted to double, Equivalent to double z = 1.0.
+  double z = 1; // automatically converted to double, Equivalent to double z = 1.0.
 
   // CONVERSIONS of types
 
@@ -118,7 +135,11 @@ void main() {
 
   // LISTS
 
-  var list1 = [1, 2, 3];
+  var list1 = [
+    1,
+    2,
+    3
+  ];
   assert(list1.length == 3);
   assert(list1[1] == 2);
 
@@ -126,14 +147,20 @@ void main() {
   assert(list1[1] == 1);
   print(list1);
   // spread operator
-  var list2 = [0, ...list1];
+  var list2 = [
+    0,
+    ...list1
+  ];
   assert(list2.length == 4);
   print(list2);
 
   // null-aware spread operator
   var list4;
   //var list3 = [-1, ...list4]; // breaks
-  var list3 = [-1, ...?list4]; // doesn't break
+  var list3 = [
+    -1,
+    ...?list4
+  ]; // doesn't break
   print(list3);
 
   // TYPES
@@ -166,7 +193,7 @@ void main() {
   c3.num2 = 22; // uses the setter method
   print(c3.num2); // uses the getter method!!
 
-  var c5 = MyClass2(4,5, name : "Jason");
+  var c5 = MyClass2(4, 5, name: "Jason");
   var c2 = MyClass2.num1(10);
   print(c2);
   print(c2.toString());
@@ -212,7 +239,15 @@ void main() {
 
   // COLLECTIONS
 
-  List<int> intL = [1, 2, 3, 4, 5, 6, 7];
+  List<int> intL = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ];
   print(intL[0]);
   for (int i in intL) {
     //print(i);
@@ -227,15 +262,13 @@ void main() {
   print(intL.first); // first element
   print(intL.last); // last element
   print("skip -> ${intL.skip(3)}");
-  print(
-      "where -> ${intL.where((i) => even(i))}"); // like filter in other functional langs
+  print("where -> ${intL.where((i) => even(i))}"); // like filter in other functional langs
   print("map -> ${intL.take(10).map((i) => i * 2)}");
   print("take While -> ${intL.takeWhile((i) => i < 4)}");
   print("take -> ${intL.take(2)}");
   print("any -> ${intL.any((i) => i % 2 == 0)}");
   print("every -> ${intL.every((i) => i % 2 == 0)}");
-  print(
-      "reduce -> ${intL.reduce((prev, i) => prev + i)}"); // add them all together
+  print("reduce -> ${intL.reduce((prev, i) => prev + i)}"); // add them all together
   print(intL.reduce(Math.min)); // ignores order
   print(intL.reduce(Math.max)); // ignores order
 
@@ -331,7 +364,8 @@ class MyClass1 {
     return MyClass1(c.getNum1() - c1.getNum1(), c.num2 - c1.num2);
   }
 
-  MyClass1(num num1, num num2) {
+  // [ ] denotes positional optional parameters { } denotes named optional parameters
+  MyClass1(num num1, num num2, [String name]) {
     this._num1 = num1;
     this._num2 = num2;
     counter = counter + 1;
@@ -342,7 +376,6 @@ class MyClass1 {
     return "$_num1 + $_num2";
   }
 }
-
 
 // factory patterns are good for crearting singletons
 class MyClass2 {
