@@ -132,8 +132,26 @@ void main() {
   // Check for NaN.
   var iMeantToDoThis = 0 / 0;
   assert(iMeantToDoThis.isNaN);
+  
+  
+  // string buffer
+  List<String> _cookies = ['one','two','three'];
+  var buffer = StringBuffer();
+  for (String cookie in _cookies) {
+    buffer..write(cookie)..write(';');
+  }
 
   // LISTS
+
+  List<int> fixedLengthList = new List(5);
+  // the below statements throw errors
+  //fixedLengthList.length = 0;  // Error
+  //fixedLengthList.add(499);    // Error
+  fixedLengthList[0] = 87;
+  List<int> growableList = [1, 2];
+  growableList.length = 0;
+  growableList.add(499);
+  growableList[0] = 87;
 
   var list1 = [
     1,
