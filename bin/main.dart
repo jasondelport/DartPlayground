@@ -294,6 +294,10 @@ void main() {
   print(ma);
   print(ma.map((int k, int v) => MapEntry(k, k + v)));
 
+  List<int> growableList1 = [1, 2];
+  growableList1.insert(0, 87);
+  print(growableList1);
+
   // EXCEPTION HANDLING
 
   try {
@@ -315,6 +319,7 @@ void main() {
 
 
   */
+  
 } // end main
 
 // ENUMS
