@@ -17,11 +17,11 @@ void main() {
   var bb;
   String aa = bb ?? 'hello!!!';
   print(aa);
-  
+
   // if b is null then set it equal to hello, otherwise, don't change it
   bb ??= 'hello!!!';
   print(bb);
-  
+
   // dynamically typed
   var name0 = 'Bob';
   dynamic name1 = 'Bob';
@@ -132,10 +132,13 @@ void main() {
   // Check for NaN.
   var iMeantToDoThis = 0 / 0;
   assert(iMeantToDoThis.isNaN);
-  
-  
+
   // string buffer
-  List<String> _cookies = ['one','two','three'];
+  List<String> _cookies = [
+    'one',
+    'two',
+    'three'
+  ];
   var buffer = StringBuffer();
   for (String cookie in _cookies) {
     buffer..write(cookie)..write(';');
@@ -148,7 +151,10 @@ void main() {
   //fixedLengthList.length = 0;  // Error
   //fixedLengthList.add(499);    // Error
   fixedLengthList[0] = 87;
-  List<int> growableList = [1, 2];
+  List<int> growableList = [
+    1,
+    2
+  ];
   growableList.length = 0;
   growableList.add(499);
   growableList[0] = 87;
@@ -164,6 +170,10 @@ void main() {
   list1[1] = 1;
   assert(list1[1] == 1);
   print(list1);
+
+  var value = list1.firstWhere((element) => element == 3, orElse: () => list1.first);
+  print('firstWhere -> $value'); // 3
+
   // spread operator
   var list2 = [
     0,
@@ -294,7 +304,10 @@ void main() {
   print(ma);
   print(ma.map((int k, int v) => MapEntry(k, k + v)));
 
-  List<int> growableList1 = [1, 2];
+  List<int> growableList1 = [
+    1,
+    2
+  ];
   growableList1.insert(0, 87);
   print(growableList1);
 
@@ -319,7 +332,6 @@ void main() {
 
 
   */
-  
 } // end main
 
 // ENUMS
